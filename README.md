@@ -6,7 +6,7 @@ Example
 
 ```
 
-import ( "mullvad" ; "fmt" )
+import ( "github.com/ktpx/go-mullvad" ; "fmt" )
 
 func main () {
 
