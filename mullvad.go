@@ -8,23 +8,27 @@ import (
 )
 
 type MullvadType struct {
-	Ipaddr     string `json:"ip"`
-	Country    string `json:"country"`
-	City       string `json:"city"`
-	Long       string `json:"longitude"`
-	Lat        string `json:"latitude"`
-	Exit_ip    string `json:"mullvad_exit_ip"`
-	Exit_host  string `json:"mullvad_exit_ip_hostname"`
-	Servertype string `json:"mullvad_server_type"`
-	Org        string `json:"organization"`
+	Ipaddr     string  `json:"ip"`
+	Country    string  `json:"country"`
+	City       string  `json:"city"`
+	Long       float32 `json:"longitude"`
+	Lat        float32 `json:"latitude"`
+	Exitip     bool    `json:"mullvad_exit_ip"`
+	Exithost   string  `json:"mullvad_exit_ip_hostname"`
+	Servertype string  `json:"mullvad_server_type"`
+	Org        string  `json:"organization"`
 
 	Blacklisted struct {
-		Blacklisted string      `json:"blacklisted"`
+		Blacklisted bool        `json:"blacklisted"`
 		Results     interface{} `json:"results"`
 	} `json:"blacklisted"`
 }
 
 var url = "https://am.i.mullvad.net/json"
+
+func (m *MullvadType) Amimullvad() bool	{
+	return m.Exitip
+}
 
 func GetMullvad() (*MullvadType, error) {
 
